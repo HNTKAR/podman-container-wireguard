@@ -1,0 +1,17 @@
+[Container]
+ServiceName=podman_container_wireguard
+ContainerName=wireguard
+Image=localhost/wireguard
+DropCapability=all
+AddCapability=CAP_NET_ADMIN
+AutoUpdate=local
+Mount=type=volume,source=wireguard.volume,destination=/V
+PodmanArgs=--sysctl=net.ipv4.ip_forward=1
+PublishPort=51820:51820/udp
+
+[Install]
+WantedBy=default.target
+
+[Service]
+ExecStartPre=modprobe -r wireguard
+ExecStartPre=modprobe wireguard dyndbg=+p
