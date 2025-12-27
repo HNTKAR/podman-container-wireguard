@@ -1,0 +1,7 @@
+[Service]
+Environment=REPO=HNTKAR
+[Build]
+ImageTag=wireguard
+ServiceName=podman_build_wireguard
+SetWorkingDirectory=https://github.com/${REPO}/vpn_podman.git
+File=Dockerfile
